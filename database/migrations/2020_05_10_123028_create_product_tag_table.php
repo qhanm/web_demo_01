@@ -17,8 +17,9 @@ class CreateProductTagTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 150);
             $table->integer('product_id')->nullable(false);
-            $table->timestamps();
-
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->useCurrent();
+            
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });
     }

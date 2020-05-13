@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('role_id')->nullable(false);
             $table->string('username', 100)->unique();
             $table->string('password');
             $table->string('email', 150)->unique();
@@ -26,7 +27,11 @@ class CreateUsersTable extends Migration
             $table->string('security_stamp', 100);
             $table->integer('status')->default(15); // status user wait
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->useCurrent();
+
+            $table->foreign('role_id')->references('id')->on('role');
+
         });
     }
 

@@ -18,8 +18,8 @@ class CreateProductTable extends Migration
             $table->string('image_thumbnail', 200);
             $table->integer('view_count')->default(0);
             $table->dateTime('time');
-            $table->timestamps();
-        });
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->useCurrent();        });
     }
 
     /**

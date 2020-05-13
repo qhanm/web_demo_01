@@ -22,8 +22,8 @@ class CreatePermissionTable extends Migration
             $table->integer('role_id');
             $table->string('function_id', 50)->nullable(false);
 
-            $table->foreign('role_id')->references('id')->on('sys_role');
-            $table->foreign('function_id')->references('id')->on('sys_function');
+            $table->foreign('role_id')->references('id')->on('role');
+            $table->foreign('function_id')->references('id')->on('function');
         });
     }
 

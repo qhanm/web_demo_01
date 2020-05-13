@@ -19,8 +19,8 @@ class CreateCategoryTable extends Migration
             $table->string('name', 250);
             $table->string('image_thumbnail', 200);
             $table->string('slug', 250);
-            $table->timestamps();
-        });
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->useCurrent();        });
     }
 
     /**

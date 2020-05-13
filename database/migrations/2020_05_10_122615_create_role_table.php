@@ -17,8 +17,8 @@ class CreateRoleTable extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->string('description', 300);
-            $table->timestamps();
-        });
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->useCurrent();        });
     }
 
     /**
